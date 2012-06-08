@@ -124,6 +124,8 @@
 		AE6F3F351458D7C100C98F1E /* BeGreaterThanSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE6F3F331458D7C100C98F1E /* BeGreaterThanSpec.mm */; };
 		AE84F0DB145B70DD00769F85 /* ShouldSyntax.h in Headers */ = {isa = PBXBuildFile; fileRef = AE84F0DA145B70DD00769F85 /* ShouldSyntax.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE84F0DC145B70DD00769F85 /* ShouldSyntax.h in Copy headers to framework */ = {isa = PBXBuildFile; fileRef = AE84F0DA145B70DD00769F85 /* ShouldSyntax.h */; };
+		AE8A86CC1582AF0800CEE08F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8A86CB1582AF0800CEE08F /* CoreGraphics.framework */; };
+		AE8A86CD1582AF5600CEE08F /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8A86C4158298D200CEE08F /* ApplicationServices.framework */; };
 		AE8C87AC13624524006C9305 /* ExpectFailureWithMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = AE8C87AA13624523006C9305 /* ExpectFailureWithMessage.h */; };
 		AE8C87AE136245BB006C9305 /* ExpectFailureWithMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C87AB13624524006C9305 /* ExpectFailureWithMessage.m */; };
 		AE8C87AF136245BD006C9305 /* ExpectFailureWithMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = AE8C87AB13624524006C9305 /* ExpectFailureWithMessage.m */; };
@@ -455,6 +457,9 @@
 		AE18A80913F4640600C8872C /* ContainSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContainSpec.mm; sourceTree = "<group>"; };
 		AE6F3F331458D7C100C98F1E /* BeGreaterThanSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BeGreaterThanSpec.mm; sourceTree = "<group>"; };
 		AE84F0DA145B70DD00769F85 /* ShouldSyntax.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouldSyntax.h; sourceTree = "<group>"; };
+		AE8A86C4158298D200CEE08F /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = ../../../../System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<group>"; };
+		AE8A86C91582AB2000CEE08F /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = ../../../../System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<group>"; };
+		AE8A86CB1582AF0800CEE08F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		AE8C87AA13624523006C9305 /* ExpectFailureWithMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpectFailureWithMessage.h; sourceTree = "<group>"; };
 		AE8C87AB13624524006C9305 /* ExpectFailureWithMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpectFailureWithMessage.m; sourceTree = "<group>"; };
 		AE8C880E13626FA5006C9305 /* CDRSpecFailure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDRSpecFailure.h; sourceTree = "<group>"; };
@@ -591,6 +596,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8A86CD1582AF5600CEE08F /* ApplicationServices.framework in Frameworks */,
 				AE135D4011DEA6F400A922D4 /* OCMock.framework in Frameworks */,
 				AEEE220311DC29AC00029872 /* Cedar.framework in Frameworks */,
 			);
@@ -607,6 +613,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8A86CC1582AF0800CEE08F /* CoreGraphics.framework in Frameworks */,
 				AE135E7011DEB46F00A922D4 /* libOCMock-StaticLib.a in Frameworks */,
 				AEEE227E11DC2D3A00029872 /* libCedar-StaticLib.a in Frameworks */,
 			);
@@ -801,6 +808,9 @@
 		AEEE1FA411DC26EA00029872 = {
 			isa = PBXGroup;
 			children = (
+				AE8A86CB1582AF0800CEE08F /* CoreGraphics.framework */,
+				AE8A86C91582AB2000CEE08F /* CoreFoundation.framework */,
+				AE8A86C4158298D200CEE08F /* ApplicationServices.framework */,
 				AEEE1FC311DC27B800029872 /* Source */,
 				AEEE1FE711DC27B800029872 /* Spec */,
 				9668DCDE144A92BA007C7294 /* OCUnit Support */,

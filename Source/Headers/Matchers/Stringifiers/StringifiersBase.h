@@ -29,4 +29,11 @@ namespace Cedar { namespace Matchers { namespace Stringifiers {
     inline NSString * string_for(NSNumber * const value) {
         return string_for([value floatValue]);
     }
+
+#pragma mark CGRect
+    inline NSString * string_for(const CGRect& value) {
+
+        return [NSString stringWithFormat:@"CGRect{ %.2f, %.2f, %.2f, %.2f }", value.origin.x, value.origin.y, value.size.width, value.size.height];
+    }
+
 }}}

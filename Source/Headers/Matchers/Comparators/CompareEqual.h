@@ -12,6 +12,10 @@ namespace Cedar { namespace Matchers { namespace Comparators {
         }
     }
 
+    inline bool compare_equal(const CGRect& actualValue, const CGRect& expectedValue) {
+        return CGRectEqualToRect(actualValue, expectedValue);
+    }
+
 #pragma mark NSNumber
     inline bool compare_equal(NSNumber * const actualValue, NSNumber * const expectedValue) {
         return [actualValue isEqualToNumber:expectedValue];

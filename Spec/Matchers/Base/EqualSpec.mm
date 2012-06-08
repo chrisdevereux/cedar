@@ -31,6 +31,61 @@ using namespace Cedar::Matchers;
 SPEC_BEGIN(EqualSpec)
 
 describe(@"equal matcher", ^{
+    CGRect rect;
+    CGFloat foo = rect.size.width;
+    rect = CGRectMake(1, 1, 1, 1);
+    CGRectEqualToRect(rect, rect);
+
+    describe(@"when the actual value is a CGRect", ^{
+        CGRect actualValue = CGRectMake(0.f, 1.f, 2.f, 3.f);
+
+        describe(@"and when the expected value is a CGRect", ^{
+            __block CGRect expectedValue;
+
+            describe(@"and the values are equal", ^{
+                 beforeEach(^{
+                    expectedValue = CGRectMake(0.f, 1.f, 2.f, 3.f);
+                });
+
+                describe(@"positive match", ^{
+                    it(@"should pass", ^{
+                        expect(actualValue).to(equal(expectedValue));
+                    });
+                });
+
+                describe(@"negative match", ^{
+                   it(@"Should fail with a sensible failure message", ^{
+                       expectFailureWithMessage(@"Expected <CGRect{ 0.00, 1.00, 2.00, 3.00 }> to not equal <CGRect{ 0.00, 1.00, 2.00, 3.00 }>", ^{
+                           expect(actualValue).to_not(equal(expectedValue));
+                       });
+                   });
+                });
+            });
+
+            describe(@"And the values are not equal", ^{
+                beforeEach(^{
+                    expectedValue = CGRectMake(1.0f, 1.0f, 4.0f, 3.0f);
+                });
+                describe(@"negative match", ^{
+                    it(@"should pass", ^{
+                        expect(actualValue).to_not(equal(expectedValue));
+                    });
+                });
+
+                describe(@"positive match", ^{
+                    it(@"Should fail with a sensible failure message", ^{
+                       expectFailureWithMessage(@"Expected <CGRect{ 0.00, 1.00, 2.00, 3.00 }> to equal <CGRect{ 1.00, 1.00, 4.00, 3.00 }>", ^{
+                           expect(actualValue).to(equal(expectedValue));
+                       });
+                    });
+                });
+
+            });
+
+        });
+
+    });
+
     describe(@"when the actual value is a built-in type", ^{
         int actualValue = 1;
 

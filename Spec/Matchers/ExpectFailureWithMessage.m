@@ -8,7 +8,7 @@ void expectFailureWithMessage(NSString *message, CDRSpecBlock block) {
     }
     @catch (CDRSpecFailure *x) {
         if (![message isEqualToString:x.reason]) {
-            NSString *reason = [NSString stringWithFormat:@"Expected failure message: <%@> but received failure message <%@>", message, x.reason];
+            NSString *reason = [NSString stringWithFormat:@"Expected failure message: <%@> but received failure message: <%@>", message, x.reason];
             [[CDRSpecFailure specFailureWithReason:reason fileName:x.fileName lineNumber:x.lineNumber] raise];
         }
         return;
@@ -26,7 +26,7 @@ void expectExceptionWithReason(NSString *reason, CDRSpecBlock block) {
     }
     @catch (NSException *x) {
         if (![reason isEqualToString:x.reason]) {
-            fail([NSString stringWithFormat:@"Expected exception with reason: <%@> but received exception with reason <%@>", reason, x.reason]);
+            fail([NSString stringWithFormat:@"Expected exception with reason: <%@> but received exception with reason: <%@>", reason, x.reason]);
         }
         return;
     }
