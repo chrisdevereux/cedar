@@ -22,7 +22,14 @@ static const NSString *foo = @"wibble";
     CedarDoubleImpl *cedar_double_impl = [[[CedarDoubleImpl alloc] initWithDouble:instance] autorelease];
     objc_setAssociatedObject(instance, @"cedar-double-implementation", cedar_double_impl, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
+    NSUInteger originalRetainCount = [instance retainCount];
     object_setClass(instance, self);
+    NSInteger shortfall = originalRetainCount - [instance retainCount];
+
+    while (shortfall > 0) {
+        [instance retain];
+        --shortfall;
+    }
 }
 
 - (void)dealloc {
