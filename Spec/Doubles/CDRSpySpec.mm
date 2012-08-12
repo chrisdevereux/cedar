@@ -1,5 +1,6 @@
 #import <Cedar/SpecHelper.h>
 #import "SimpleIncrementer.h"
+#import "AnARCClass.h"
 
 extern "C" {
 #import "ExpectFailureWithMessage.h"
@@ -54,6 +55,18 @@ describe(@"spy_on", ^{
         spy_on(incrementer);
         [incrementer increment];
         ((CDRSpy *)incrementer).sent_messages should_not be_empty;
+    });
+
+    it(@"should be able to spy on return values of methods compiled with ARC", ^{
+        AnARCClass * arcThing = [[AnARCClass alloc] init];
+        spy_on(arcThing.fileManager);
+        [arcThing release];
+    });
+
+    it(@"should be able to spy on autoreleased return values of methods compiled with ARC", ^{
+        AnARCClass * arcThing = [[AnARCClass alloc] init];
+        spy_on(arcThing.fileManagerAutoreleased);
+        [arcThing release];
     });
 });
 

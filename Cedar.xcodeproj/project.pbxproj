@@ -23,6 +23,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		228F300A15D85DD900B7B317 /* AnARCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 228F300915D85DD900B7B317 /* AnARCClass.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		228F300B15D85DD900B7B317 /* AnARCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 228F300915D85DD900B7B317 /* AnARCClass.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		228F300C15D85E5F00B7B317 /* CDRSpySpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 66F00B5114C4D97C00146D88 /* CDRSpySpec.mm */; };
 		22B6A22715B7ACF800960ADE /* InvocationMatcher.h in Copy headers to framework */ = {isa = PBXBuildFile; fileRef = AE597B4015B0638B00EEF305 /* InvocationMatcher.h */; };
 		42064466139B44EC00C85605 /* CDRTeamCityReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 42064465139B44EC00C85605 /* CDRTeamCityReporter.h */; };
 		42064467139B44EC00C85605 /* CDRTeamCityReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 42064465139B44EC00C85605 /* CDRTeamCityReporter.h */; };
@@ -391,6 +394,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		228F300815D85DD900B7B317 /* AnARCClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnARCClass.h; sourceTree = "<group>"; };
+		228F300915D85DD900B7B317 /* AnARCClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnARCClass.m; sourceTree = "<group>"; };
 		42064465139B44EC00C85605 /* CDRTeamCityReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDRTeamCityReporter.h; sourceTree = "<group>"; };
 		42064469139B44F600C85605 /* CDRTeamCityReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDRTeamCityReporter.m; sourceTree = "<group>"; };
 		492951DC1481AAB100FA8916 /* CDRJUnitXMLReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDRJUnitXMLReporter.h; sourceTree = "<group>"; };
@@ -680,6 +685,8 @@
 				AE9AA69615ADB99800617E1A /* CedarDoubleSharedExamples.mm */,
 				AE36AC5F15B4BB2D00EB6C51 /* NoOpKeyValueObserver.h */,
 				AE36AC6015B4BB3B00EB6C51 /* NoOpKeyValueObserver.m */,
+				228F300815D85DD900B7B317 /* AnARCClass.h */,
+				228F300915D85DD900B7B317 /* AnARCClass.m */,
 			);
 			path = Doubles;
 			sourceTree = "<group>";
@@ -1535,6 +1542,7 @@
 				AE9AA69715ADB99800617E1A /* CedarDoubleSharedExamples.mm in Sources */,
 				AE74903215B45EBA008EA127 /* CDRProtocolFakeSpec.mm in Sources */,
 				AE36AC6215B4BBFB00EB6C51 /* NoOpKeyValueObserver.m in Sources */,
+				228F300A15D85DD900B7B317 /* AnARCClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1606,6 +1614,8 @@
 				AE9AA68E15ACD8D400617E1A /* SimpleIncrementer.m in Sources */,
 				AE9AA69815ADB99800617E1A /* CedarDoubleSharedExamples.mm in Sources */,
 				AE36AC6315B4BBFC00EB6C51 /* NoOpKeyValueObserver.m in Sources */,
+				228F300B15D85DD900B7B317 /* AnARCClass.m in Sources */,
+				228F300C15D85E5F00B7B317 /* CDRSpySpec.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
