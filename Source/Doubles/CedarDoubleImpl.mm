@@ -82,7 +82,7 @@ static Class CDR_ClassByDeletingMethodForSelector(Class cls, SEL selector)
 
 - (Cedar::Doubles::StubbedMethod &)add_stub:(const Cedar::Doubles::StubbedMethod &)stubbed_method {
     const SEL & selector = stubbed_method.selector();
-    
+
     if (![self.parent_double respondsToSelector:selector]) {
         [[NSException exceptionWithName:NSInternalInconsistencyException
                                  reason:[NSString stringWithFormat:@"Attempting to stub method <%s>, which double does not respond to", sel_getName(selector)]
