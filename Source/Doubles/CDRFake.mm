@@ -1,6 +1,5 @@
 #import "CDRFake.h"
 #import "objc/runtime.h"
-#import "objc/message.h"
 #import "StubbedMethod.h"
 #import "CedarDoubleImpl.h"
 
