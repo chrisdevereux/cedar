@@ -120,6 +120,37 @@ sharedExamplesFor(@"a Cedar double", ^(NSDictionary *sharedContext) {
                 ^{ myDouble stub_method("wibble_wobble"); } should raise_exception;
             });
         });
+        
+        context(@"with a method implemented by the double", ^{
+            it(@"should return the stubbed value", ^{
+                myDouble stub_method("hash").and_return((NSUInteger)0xF00);
+                [myDouble hash] should equal((NSUInteger)0xF00);
+            });
+            
+            it(@"should record the invocation", ^{
+                myDouble stub_method("hash");
+                [myDouble hash];
+                myDouble should have_received("hash");
+            });
+            
+            context(@"when stubbed with an argument and return value", ^{
+                context(@"invoked with the stubbed argument", ^{
+                    it(@"should return the stubbed return value", ^{
+                        myDouble stub_method("conformsToProtocol:").with(@protocol(NSFastEnumeration)).and_return(YES);
+                        [myDouble conformsToProtocol:@protocol(NSFastEnumeration)] should equal(YES);
+                    });
+                });
+                
+                context(@"twice", ^{
+                    it(@"should return the stubbed value for each method", ^{
+                        myDouble stub_method("conformsToProtocol:").with(@protocol(NSCopying)).and_return(NO);
+                        myDouble stub_method("conformsToProtocol:").with(@protocol(NSCoding)).and_return(YES);
+                        [myDouble conformsToProtocol:@protocol(NSCopying)] should equal(NO);
+                        [myDouble conformsToProtocol:@protocol(NSCoding)] should equal(YES);
+                    });
+                });
+            });
+        });
 
         context(@"with a method with no arguments", ^{
             context(@"when stubbed twice", ^{

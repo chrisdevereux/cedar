@@ -2,6 +2,8 @@
 #import "CedarDoubleImpl.h"
 #import "StubbedMethod.h"
 #import "CDRClassFake.h"
+#import "objc/runtime.h"
+#import "objc/message.h"
 
 static NSMutableArray *registeredDoubleImpls__ = nil;
 
@@ -50,15 +52,45 @@ static NSMutableArray *registeredDoubleImpls__ = nil;
     return stubbed_methods_;
 }
 
+static IMP CDR_ForwardHandlerForMethod(Class cls, SEL selector)
+{
+    char const *encoding = method_getTypeEncoding(class_getInstanceMethod(cls, selector));
+    NSMethodSignature *sig = [NSMethodSignature signatureWithObjCTypes:encoding];
+    NSCAssert(sig && strstr(sig.methodReturnType, "?") == NULL, @"don't know which forward handler to use");
+    
+    return [sig methodReturnLength] > sizeof(void *) ? (IMP)_objc_msgForward_stret : _objc_msgForward;
+}
+
+static Class CDR_ClassByDeletingMethodForSelector(Class cls, SEL selector)
+{
+    if (!class_respondsToSelector(cls, selector)) {
+        return cls;
+    }
+    
+    static uint64_t count;
+    char const *name = [[NSString stringWithFormat:@"%@%llu", NSStringFromClass(cls), count] UTF8String];
+    count++;
+    
+    Class subclass = objc_allocateClassPair(cls, name, 0);
+    objc_registerClassPair(subclass);
+    
+    char const *typeEncoding = method_getTypeEncoding(class_getInstanceMethod(cls, selector));
+    class_replaceMethod(subclass, selector, CDR_ForwardHandlerForMethod(cls, selector), typeEncoding);
+    
+    return subclass;
+}
+
 - (Cedar::Doubles::StubbedMethod &)add_stub:(const Cedar::Doubles::StubbedMethod &)stubbed_method {
     const SEL & selector = stubbed_method.selector();
-
+    
     if (![self.parent_double respondsToSelector:selector]) {
         [[NSException exceptionWithName:NSInternalInconsistencyException
                                  reason:[NSString stringWithFormat:@"Attempting to stub method <%s>, which double does not respond to", sel_getName(selector)]
                                userInfo:nil]
          raise];
     }
+    
+    object_setClass(self.parent_double, CDR_ClassByDeletingMethodForSelector(object_getClass(self.parent_double), selector));
 
     Cedar::Doubles::StubbedMethod::selector_map_t::iterator it = stubbed_methods_.find(selector);
 
