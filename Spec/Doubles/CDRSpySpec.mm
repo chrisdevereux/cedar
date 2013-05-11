@@ -17,8 +17,9 @@ describe(@"spy_on", ^{
     beforeEach(^{
         incrementer = [[[SimpleIncrementer alloc] init] autorelease];
         spy_on(incrementer);
-
+        
         [[SpecHelper specHelper].sharedExampleContext setObject:incrementer forKey:@"double"];
+        [[SpecHelper specHelper].sharedExampleContext setObject:[SimpleIncrementer class] forKey:@"class"];
     });
 
     describe(@"method stubbing", ^{
@@ -81,6 +82,7 @@ describe(@"spy_on", ^{
     });
 
     itShouldBehaveLike(@"a Cedar double");
+    itShouldBehaveLike(@"a Cedar double of specific class");
 
     it(@"should blow up in an obvious manner when spying on nil", ^{
         ^{ spy_on(nil); } should raise_exception.with_reason(@"Cannot spy on nil");

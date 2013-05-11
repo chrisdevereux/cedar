@@ -14,6 +14,11 @@
     return [self.klass instancesRespondToSelector:selector];
 }
 
+- (Class)class
+{
+    return self.klass;
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"Fake implementation of %@ class", self.klass];
 }

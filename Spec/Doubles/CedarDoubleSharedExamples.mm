@@ -106,7 +106,7 @@ sharedExamplesFor(@"a Cedar double", ^(NSDictionary *sharedContext) {
             strcmp("hello", argument) should equal(0);
         });
     });
-
+    
     describe(@"-stub_method", ^{
         context(@"with a non-double", ^{
             it(@"should raise an exception", ^{
@@ -569,6 +569,23 @@ sharedExamplesFor(@"a Cedar double", ^(NSDictionary *sharedContext) {
                     ^{ myDouble stub_method("methodWithNumber1:andNumber2:").with(arg1, arg2).and_return(@91); } should raise_exception().with_reason(@"The method <methodWithNumber1:andNumber2:> is already stubbed with arguments (<1><2>)");
                 });
             });
+        });
+    });
+});
+
+
+sharedExamplesFor(@"a Cedar double of specific class", ^(NSDictionary *sharedContext) {
+    __block id<CedarDouble, SimpleIncrementer> myDouble;
+    __block Class myDoubleClass;
+    
+    beforeEach(^{
+        myDouble = [sharedContext objectForKey:@"double"];
+        myDoubleClass = [sharedContext objectForKey:@"class"];
+    });
+    
+    describe(@"-class", ^{
+        it(@"should return stub class", ^{
+            [myDouble class] should equal(myDoubleClass);
         });
     });
 });

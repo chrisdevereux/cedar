@@ -50,6 +50,15 @@
    return count;
 }
 
+- (Class)class
+{
+    __block Class cls;
+    [self as_original_class:^{
+        cls = [self class];
+    }];
+    return cls;
+}
+
 - (NSString *)description {
     __block NSString *description;
     [self as_original_class:^{

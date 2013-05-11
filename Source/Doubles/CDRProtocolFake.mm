@@ -36,14 +36,12 @@ static bool protocol_hasSelector(Protocol *protocol, SEL selector, BOOL is_requi
     protocol_hasSelector(protocol_, selector, false, false);
 }
 
-static BOOL getProtocolMethodDescription(Protocol *p, SEL aSel, BOOL isRequiredMethod, BOOL isInstanceMethod, struct objc_method_description *outDesc)
-{
+static BOOL getProtocolMethodDescription(Protocol *p, SEL aSel, BOOL isRequiredMethod, BOOL isInstanceMethod, struct objc_method_description *outDesc) {
     *outDesc = protocol_getMethodDescription(p, aSel, isRequiredMethod, isInstanceMethod);
     return outDesc->types != NULL;
 }
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
-{
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
     struct objc_method_description methodDescription;
     if (getProtocolMethodDescription(protocol_, sel, true, true, &methodDescription) ||
         getProtocolMethodDescription(protocol_, sel, true, false, &methodDescription) ||

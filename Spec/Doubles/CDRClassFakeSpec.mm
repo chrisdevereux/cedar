@@ -42,11 +42,13 @@ describe(@"CDRClassFake", ^{
             fake = fake_for([SimpleIncrementer class]);
 
             [[SpecHelper specHelper].sharedExampleContext setObject:fake forKey:@"double"];
+            [[SpecHelper specHelper].sharedExampleContext setObject:[SimpleIncrementer class] forKey:@"class"];
         });
 
         itShouldBehaveLike(@"a Cedar double");
         itShouldBehaveLike(@"a Cedar class fake");
         itShouldBehaveLike(@"a Cedar ordinary fake");
+        itShouldBehaveLike(@"a Cedar double of specific class");
 
         context(@"when calling a method which has not been stubbed", ^{
             it(@"should raise an exception", ^{
